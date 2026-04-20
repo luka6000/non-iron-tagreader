@@ -1,0 +1,71 @@
+binary_sensor:
+  - platform: template
+    name: "=Tag="
+    id: is_tag
+    device_class: vibration
+    entity_category: DIAGNOSTIC
+    disabled_by_default: False
+
+script:
+  - id: wait_input
+    then:
+      - delay: 3s
+      - text_sensor.template.publish:
+          id: status
+          state: "Waiting for input"
+
+text_sensor:
+  - platform: template
+    id: status
+    name: "Status"
+    icon: mdi:ladybug
+    entity_category: DIAGNOSTIC
+    on_value:
+      if:
+        condition:
+          lambda: 'return id(status).state != "Waiting for input";'
+        then:
+        - script.stop: wait_input
+        - script.execute: wait_input
+
+button:
+  - platform: restart
+    name: "Restart"
+    id: btn_restart
+    entity_category: DIAGNOSTIC
+
+rc522_i2c:
+- id: nfc_board
+  i2c_id: bus_i2c
+  address: 0x28
+  update_interval: 350ms
+  on_tag_removed:
+    - binary_sensor.template.publish:
+        id: is_tag
+        state: false
+    - text_sensor.template.publish:
+        id: status
+        state: "Tag removed"
+    - script.execute:
+        id: tagreader_event
+        action: "tagRemoved"
+        uid: !lambda 'return x;'
+    - script.execute: led_blink
+
+  on_tag:
+    - binary_sensor.template.publish:
+        id: is_tag
+        state: true
+    - text_sensor.template.publish:
+        id: status
+        state: !lambda 'return "Tag "+x;'
+    - text_sensor.template.publish:
+        id: status
+        state: "UID tag"
+    - homeassistant.tag_scanned: !lambda |-
+        return x;
+    - script.execute:
+        id: tagreader_event
+        action: "tagScanned"
+        uid: !lambda 'return x;'
+    - script.execute: led_ok

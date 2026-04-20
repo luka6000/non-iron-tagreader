@@ -1,0 +1,255 @@
+packages:
+  project: !include non-iron-tagreader-project.yaml
+  core-nfc: !include non-iron-tagreader-core-nfc-rc522.yaml
+  core-comms: !include non-iron-tagreader-core-comms.yaml
+
+# These substitutions allow the end user to override certain values
+substitutions:
+  name: "non-iron-tagreader"
+  friendly_name: "Non-Iron TagReader"
+
+esphome:
+  name: "${name}"
+  friendly_name: ${friendly_name}
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: true
+
+  # hello world
+  on_boot:
+    priority: -100
+    then:
+    - light.turn_on:
+        id: led1
+        effect: HelloWorld
+    - delay: 1000ms
+    - light.turn_off: led1
+    - wait_until:
+        condition:
+          api.connected:
+        timeout: 20s
+    - text_sensor.template.publish:
+        id: status
+        state: "Ready"
+
+esp32:
+# NOTE: Double-check label on your Atom variant for pin assignments:
+# - LED: GPIO27 (some Atom variants use GPIO22 or GPIO19)
+# - Button: GPIO39 (some Atom variants use GPIO33)
+# - I2C SDA: GPIO26, SCL: GPIO32 (AtomS3 uses GPIO2 and GPIO1)
+# Update the pin numbers below if your hardware revision differs.
+  board: m5stack-atom
+  variant: esp32
+  cpu_frequency: 80MHz #sufficient for this application and reduces power consumption
+  framework:
+    type: esp-idf
+
+# debug:
+
+# To be able to get logs from the device via serial and api.
+logger:
+  baud_rate: 0
+  # level: VERBOSE
+  # level: DEBUG
+  level: WARN
+  logs:
+    light: WARN
+
+i2c:
+  id: bus_i2c
+  sda: 26
+  scl: 32
+  scan: True
+  frequency: 100kHz
+  timeout: 13ms
+
+esp32_ble_tracker:
+  scan_parameters:
+    active: false
+bluetooth_proxy:
+  active: false
+
+light:
+  - platform: esp32_rmt_led_strip
+    id: led1
+    pin: GPIO27
+    chipset: SK6812
+    num_leds: 1
+    rgb_order: grb
+    restore_mode: ALWAYS_OFF
+    default_transition_length: 0s
+    flash_transition_length: 0s
+    effects:
+      - strobe:
+          name: HelloWorld
+          colors:
+            - state: true
+              brightness: 100%
+              red: 100%
+              green: 0%
+              blue: 0%
+              duration: 250ms
+            - state: true
+              brightness: 100%
+              red: 0%
+              green: 100%
+              blue: 0%
+              duration: 250ms
+            - state: true
+              brightness: 100%
+              red: 0%
+              green: 0%
+              blue: 100%
+              duration: 250ms
+            - state: true
+              brightness: 100%
+              red: 100%
+              green: 100%
+              blue: 100%
+              duration: 250ms
+
+binary_sensor:
+  - platform: gpio
+    id: toggle
+    pin:
+      number: GPIO39
+      inverted: true
+    on_multi_click:
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 0.25s
+        - ON for at most 1s
+        - OFF for at most 0.25s
+        - ON for at most 1s
+      then:
+        - script.execute: led_blink
+        - text_sensor.template.publish:
+            id: status
+            state: "clickTriple"
+        - script.execute:
+            id: tagreader_event
+            action: "clickTriple"
+            uid: ""
+            uri: ""
+            artist: ""
+            playlist: ""
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 0.25s
+        - ON for at most 1s
+        - OFF for at least 0.25s
+      then:
+        - script.execute: led_blink
+        - text_sensor.template.publish:
+            id: status
+            state: "clickDouble"
+        - script.execute:
+            id: tagreader_event
+            action: "clickDouble"
+            uid: ""
+            uri: ""
+            artist: ""
+            playlist: ""
+    - timing:
+        - ON for at most 1s
+        - OFF for at most 0.25s
+        - ON for at least 1.5s
+      then:
+        - script.execute: led_blink
+        - text_sensor.template.publish:
+            id: status
+            state: "clickHold"
+        - script.execute:
+            id: tagreader_event
+            action: "clickHold"
+            uid: ""
+            uri: ""
+            artist: ""
+            playlist: ""
+    - timing:
+        - ON for 0.5s to 2s
+        - OFF for at least 50ms
+      then:
+        - script.execute: led_blink
+        - text_sensor.template.publish:
+            id: status
+            state: "clickLong"
+        - script.execute:
+            id: tagreader_event
+            action: "clickLong"
+            uid: ""
+            uri: ""
+            artist: ""
+            playlist: ""
+    - timing:
+        - ON for at most 0.5s
+        - OFF for at least 260ms
+      then:
+        - script.execute: led_blink
+        - text_sensor.template.publish:
+            id: status
+            state: "clickSingle"
+        - script.execute:
+            id: tagreader_event
+            action: "clickSingle"
+            uid: ""
+            uri: ""
+            artist: ""
+            playlist: ""
+
+script:
+  - id: led_blink
+    then:
+    - light.turn_off: led1
+    - light.turn_on:
+        id: led1
+        brightness: 30%
+        red: 100%
+        green: 100%
+        blue: 100%
+        flash_length: 50ms
+  - id: led_ok
+    then:
+    - light.turn_off: led1
+    - light.turn_on:
+        id: led1
+        brightness: 100%
+        red: 0%
+        green: 100%
+        blue: 0%
+        flash_length: 50ms
+    - delay: 100ms
+    - light.turn_on:
+        id: led1
+        brightness: 100%
+        red: 0%
+        green: 100%
+        blue: 0%
+        flash_length: 50ms
+  - id: led_success
+    then:
+    - light.turn_off: led1
+    - light.turn_on:
+        id: led1
+        brightness: 100%
+        red: 0%
+        green: 100%
+        blue: 0%
+        flash_length: 200ms
+    - delay: 250ms
+    - light.turn_on:
+        id: led1
+        brightness: 100%
+        red: 0%
+        green: 100%
+        blue: 0%
+        flash_length: 200ms
+    - delay: 250ms
+    - light.turn_on:
+        id: led1
+        brightness: 100%
+        red: 0%
+        green: 100%
+        blue: 0%
+        flash_length: 500ms
+

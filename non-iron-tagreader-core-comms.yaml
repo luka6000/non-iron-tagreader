@@ -1,0 +1,41 @@
+# API is a requirement of the dashboard import.
+api:
+
+# OTA is required for Over-the-Air updating
+ota:
+  platform: esphome
+
+wifi:
+  ap:
+  power_save_mode: LIGHT
+  
+script:
+  - id: tagreader_event
+    parameters:
+      action: string
+      uid: string
+    mode: queued
+    max_runs: 3
+    then:
+      - event.trigger:
+          id: tagreader_action
+          event_type: !lambda return action;
+      - homeassistant.event:
+          event: esphome.tagreader
+          data:
+            magic: ${magic}
+            action: !lambda return action;
+            uid: !lambda return uid;
+
+event:
+  - platform: template
+    id: tagreader_action
+    name: "Action"
+    event_types:
+      - clickTriple
+      - clickDouble
+      - clickHold
+      - clickLong
+      - clickSingle
+      - tagRemoved
+      - tagScanned
