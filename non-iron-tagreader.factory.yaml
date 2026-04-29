@@ -18,21 +18,21 @@ esphome:
     name: LukaGra.${friendly_name}
     version: dev
 
-# ota:
-  # - platform: http_request
-  #   id: ota_http_request
+ota:
+  - platform: http_request
+    id: ota_http_request
 
-# http_request:
+http_request:
 
-# update:
-#   - platform: http_request
-#     name: None
-#     id: update_http_request
-#     source: https://luka6000.github.io/TagTuner/firmware/manifest-tagtuner-atom-esp32.json
+update:
+  - platform: http_request
+    name: None
+    id: update_http_request
+    source: https://luka6000.github.io/non-iron-tagreader/firmware/non-iron-tagreader-firmware.manifest.json
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://luka6000/non-iron-tagreader/non-iron-tagreader-atom-lite.yaml@main
+  package_import_url: github://luka6000/non-iron-tagreader/non-iron-tagreader.factory.yaml@main
   import_full_config: false
 
 # Sets up the improv via serial client for Wi-Fi provisioning
