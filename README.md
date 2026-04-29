@@ -35,7 +35,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 
 # Firmware
 
-- [non-iron-tagreader.factory.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-project.yaml) simple NFC tag reader with passive BLE proxy
+- [non-iron-tagreader.factory.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-atom-lite.yaml) simple NFC tag reader with passive BLE proxy
 
 # Installation
 
