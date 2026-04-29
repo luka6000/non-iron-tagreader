@@ -14,7 +14,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 
 # Non-Iron TagReader Bill-of-Materials
 
-- Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rjvMjf) \
+- Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rw1K9V) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/3_2e4a5d8d-c739-405a-9494-431e2edec8ae_1200x1200.jpg" />
 
 - RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) \
