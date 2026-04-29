@@ -20,7 +20,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 - RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
 
-- 3D‑printed enclosure (TODO print options)
+- 3D‑printed enclosure: download the case models [here](https://github.com/luka6000/non-iron-tagreader/tree/main/STLs) or order a print through the JLC3DP service [here](https://jlc3dp.com/3d-models/detail/MX14062-case-for-Non-Iron-TagReader-for-Home-Assistant/?from=VRRKTGMREGSG). For best results, I suggest SLA resin with selectable color and surface finish. 
 
 # Quickstart
 
@@ -55,9 +55,9 @@ For more information, check out the Home Assistant documentation for [tags](http
 <img width="1024" alt="4B0793FC-88F4-4ED7-94ED-9044D19C486D_1_102_o" src="https://github.com/user-attachments/assets/4d6b283a-419a-40f8-b3b6-560d2b305715" />
 
 # NFC tag reader for HA options
-- Adonno's tagreader https://github.com/adonno/tagreader
+- Adonno's tagreader [https://github.com/adonno/tagreader]()
 - usb direct connected reader - any options here?
-- TagTuner NFC music player https://luka6000.github.io/TagTuner/
+- TagTuner NFC music player [https://luka6000.github.io/TagTuner/]()
 
 Feel free to contribute updates for other available DIY projects.
 
