@@ -2,7 +2,7 @@
 Easy do‑it‑yourself NFC tag reader kit that requires no soldering.
 Snap‑together hardware and simple self‑updating firmware make it perfect for Home Assistant enthusiasts who want a working NFC reader without any special tools.
 
-<img width="1024" height="768" alt="8140B74D-A338-42EC-99B6-5AE2DA920D0A_1_105_c" src="https://github.com/user-attachments/assets/b7cdf02e-fb5a-4fdf-8237-ef33800cd697" />
+<img width="1024" alt="8140B74D-A338-42EC-99B6-5AE2DA920D0A_1_105_c" src="https://github.com/user-attachments/assets/b7cdf02e-fb5a-4fdf-8237-ef33800cd697" />
 
 ## Why this TagReader
 
@@ -10,14 +10,14 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 - No soldering iron required
 - Many community members report that [Adonno's tagreader](https://github.com/adonno/tagreader) is often unavailable, so this project offers an accessible alternative
 
-<img width="1024" height="768" alt="29104098-5D70-4B83-9D7E-D727CBF481E4_1_105_c" src="https://github.com/user-attachments/assets/d175fd05-8561-4544-838a-a852ba9fb2ac" />
+<img width="1024" alt="29104098-5D70-4B83-9D7E-D727CBF481E4_1_105_c" src="https://github.com/user-attachments/assets/d175fd05-8561-4544-838a-a852ba9fb2ac" />
 
 # Non-Iron TagReader Bill-of-Materials
 
-- Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rjvMjf) 
+- Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rjvMjf) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/3_2e4a5d8d-c739-405a-9494-431e2edec8ae_1200x1200.jpg" />
 
-- RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) 
+- RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
 
 - 3D‑printed enclosure (TODO print options)
@@ -35,45 +35,11 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 
 # Firmware
 
-- [non-iron-tagreader.factory.yaml]() simple NFC tag reader with passive BLE proxy
+- [non-iron-tagreader.factory.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-project.yaml) simple NFC tag reader with passive BLE proxy
 
-# Installation (TODO)
+# Installation
 
-You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
-
-<style>
-  .invisible {
-    visibility: hidden;
-  }
-  .radios li {
-    list-style: none;
-    line-height: 2em;
-  }
-</style>
-<script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
-<p>Select your TagReader version</p>
-<ul class="radios">
-  <li>
-    <label><input type="radio" name="type" value="non-iron-tagreader-atom-lite" />Non-Iron TagReader Atom Lite</br>
-        <img width=600 src="https://shop.m5stack.com/cdn/shop/products/7_da00f974-6952-4ad6-9f08-beaab6c888d5_1200x1200.jpg">
-    </label>
-  </li>
-</ul>
-<p class="button-row" align="center">
-  <esp-web-install-button class="invisible"></esp-web-install-button>
-</p>
-<script>
-  document.querySelectorAll('input[name="type"]').forEach(radio =>
-    radio.addEventListener("change", () => {
-      const button = document.querySelector('esp-web-install-button');
-      button.manifest = `./firmware/manifest-${radio.value}.json`;
-      button.classList.remove('invisible');
-    }
-  ));
-</script>
-
-
-Installer powered by [ESP Web Tools](https://esphome.github.io/esp-web-tools/)
+Please visit [github page](https://luka6000.github.io/non-iron-tagreader/#installation) for this project to do a browser based installation powered by [ESP Web Tools](https://esphome.github.io/esp-web-tools/)
 
 # How to use it
 - Discover your new TagReader with Home Assistant mobile app
@@ -88,7 +54,7 @@ For more information, check out the Home Assistant documentation for [tags](http
 
 <img width="1024" alt="4B0793FC-88F4-4ED7-94ED-9044D19C486D_1_102_o" src="https://github.com/user-attachments/assets/4d6b283a-419a-40f8-b3b6-560d2b305715" />
 
-# NFC tag reader options for HA
+# NFC tag reader for HA options
 - Adonno's tagreader https://github.com/adonno/tagreader
 - usb direct connected reader - any options here?
 - TagTuner NFC music player https://luka6000.github.io/TagTuner/
@@ -105,4 +71,3 @@ This work, including yaml files, 3d models and documentation, is licensed under 
 <img width="100" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png">](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ESPHome components modifications are licensed under ESPHome [license](https://github.com/esphome/esphome?tab=License-1-ov-file#readme)
-

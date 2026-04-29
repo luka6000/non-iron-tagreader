@@ -1,3 +1,8 @@
+- [Bill-of-Materials](#non-iron-tagreader-bill-of-materials)
+- [Quickstart](#quickstart)
+- [Installation](#installation)
+- [How to use it](#how-to-use-it)
+
 # Non-Iron TagReader for Home Assistant
 Easy do‑it‑yourself NFC tag reader kit that requires no soldering.
 Snap‑together hardware and simple self‑updating firmware make it perfect for Home Assistant enthusiasts who want a working NFC reader without any special tools.
@@ -35,7 +40,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 
 # Firmware
 
-- [non-iron-tagreader.factory.yaml]() simple NFC tag reader with passive BLE proxy
+- [non-iron-tagreader.factory.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-project.yaml) simple NFC tag reader with passive BLE proxy
 
 # Installation
 
@@ -51,10 +56,10 @@ You can use the button below to install the pre-built firmware directly to your 
   }
 </style>
 <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
-<p>Select your TagReader version</p>
+<p>Select your version</p>
 <ul class="radios">
   <li>
-    <label><input type="radio" name="type" value="non-iron-tagreader-firmware" checked><img width=600 src="https://shop.m5stack.com/cdn/shop/products/7_da00f974-6952-4ad6-9f08-beaab6c888d5_1200x1200.jpg" alt="Non-Iron TagReader Atom Lite">
+    <label><input type="radio" name="type" value="non-iron-tagreader-firmware"><img width=600 src="https://shop.m5stack.com/cdn/shop/products/7_da00f974-6952-4ad6-9f08-beaab6c888d5_1200x1200.jpg" alt="Non-Iron TagReader Atom Lite">
     </label>
   </li>
 </ul>
@@ -87,7 +92,7 @@ For more information, check out the Home Assistant documentation for [tags](http
 
 <img width="1024" alt="4B0793FC-88F4-4ED7-94ED-9044D19C486D_1_102_o" src="https://github.com/user-attachments/assets/4d6b283a-419a-40f8-b3b6-560d2b305715" />
 
-# NFC tag reader options for HA
+# NFC tag reader for HA options
 - Adonno's tagreader https://github.com/adonno/tagreader
 - usb direct connected reader - any options here?
 - TagTuner NFC music player https://luka6000.github.io/TagTuner/
