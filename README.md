@@ -20,7 +20,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 - RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
 
-- 3D‑printed enclosure: download the case models [here](https://github.com/luka6000/non-iron-tagreader/tree/main/STLs) or order a print through the JLC3DP service [here](https://jlc3dp.com/3d-models/detail/MX14062-case-for-Non-Iron-TagReader-for-Home-Assistant/?from=VRRKTGMREGSG). For best results, I suggest SLA resin with selectable color and surface finish. 
+- 3D‑printed enclosure: download the case models [here](https://github.com/luka6000/non-iron-tagreader/tree/main/STLs) or order a print through the JLC3DP service [here](https://jlc3dp.com/3d-models/detail/MX14062-case-for-Non-Iron-TagReader-for-Home-Assistant/?from=VRRKTGMREGSG). For best results, I suggest SLA resin with selectable color and surface finish. You can also check Slant3D Portals service [here](https://teleportpod.com/portal/751bada5-ca11-440a-af45-6d9e2cf4d589?item=5013)
 
 # Quickstart
 
