@@ -17,7 +17,7 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 - Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rw1K9V) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/3_2e4a5d8d-c739-405a-9494-431e2edec8ae_1200x1200.jpg" />
 
-- RFID unit [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c43w8sz7) \
+- RFID unit [M5Stack on AliExpress](https://s.click.aliexpress.com/e/_c3JSZivv) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
 
 - 3D‑printed enclosure: download the case models [here](https://github.com/luka6000/non-iron-tagreader/tree/main/STLs) or order a print through the JLC3DP service [here](https://jlc3dp.com/3d-models/detail/MX14062-case-for-Non-Iron-TagReader-for-Home-Assistant/?from=VRRKTGMREGSG). For best results, I suggest SLA resin with selectable color and surface finish. You can also check Slant3D Portals service [here](https://teleportpod.com/portal/751bada5-ca11-440a-af45-6d9e2cf4d589?item=5013)
@@ -56,8 +56,15 @@ For more information, check out the Home Assistant documentation for [tags](http
 
 # NFC tag reader for HA options
 - Adonno's tagreader [https://github.com/adonno/tagreader]()
-- usb direct connected reader - any options here?
 - TagTuner NFC music player [https://luka6000.github.io/TagTuner/]()
+- ha-usb-nfc [https://github.com/Flaniel44/ha-usb-nfc]()
+- Smart Vinyl Player for Home Assistant [https://makerworld.com/pl/models/2918638-smart-vinyl-player-for-home-assistant]()
+- Minilos: a device for intentional listening in the digital age [https://coconauts.net/blog/2026/04/30/minilos/]()
+- How I Built an NFC Movie Library for my Kids [https://simplyexplained.com/blog/how-i-built-an-nfc-movie-library-for-my-kids/]()
+- Tiny Tomes [https://www.handsonkatie.com/articles/tiny-tomes]()
+- RFID Record Player [https://github.com/fatihak/RFID-Record-Player]()
+- NFC Mini Record Player - Vinyl Tag Reader [https://makerworld.com/pl/models/1980570-esp32-nfc-mini-record-player-vinyl-tag-reader]()
+- NFC Spotify Player [https://github.com/janjanmedinaaa/nfc-spotify-player]()
 
 Feel free to contribute updates for other available DIY projects.
 
