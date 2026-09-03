@@ -55,16 +55,16 @@ For more information, check out the Home Assistant documentation for [tags](http
 <img width="1024" alt="4B0793FC-88F4-4ED7-94ED-9044D19C486D_1_102_o" src="https://github.com/user-attachments/assets/4d6b283a-419a-40f8-b3b6-560d2b305715" />
 
 # NFC tag reader for HA options
-- Adonno's tagreader [https://github.com/adonno/tagreader]()
-- TagTuner NFC music player [https://luka6000.github.io/TagTuner/]()
-- ha-usb-nfc [https://github.com/Flaniel44/ha-usb-nfc]()
-- Smart Vinyl Player for Home Assistant [https://makerworld.com/pl/models/2918638-smart-vinyl-player-for-home-assistant]()
-- Minilos: a device for intentional listening in the digital age [https://coconauts.net/blog/2026/04/30/minilos/]()
-- How I Built an NFC Movie Library for my Kids [https://simplyexplained.com/blog/how-i-built-an-nfc-movie-library-for-my-kids/]()
-- Tiny Tomes [https://www.handsonkatie.com/articles/tiny-tomes]()
-- RFID Record Player [https://github.com/fatihak/RFID-Record-Player]()
-- NFC Mini Record Player - Vinyl Tag Reader [https://makerworld.com/pl/models/1980570-esp32-nfc-mini-record-player-vinyl-tag-reader]()
-- NFC Spotify Player [https://github.com/janjanmedinaaa/nfc-spotify-player]()
+- Adonno's tagreader https://github.com/adonno/tagreader
+- TagTuner NFC music player https://luka6000.github.io/TagTuner/
+- ha-usb-nfc https://github.com/Flaniel44/ha-usb-nfc
+- Smart Vinyl Player for Home Assistant https://makerworld.com/pl/models/2918638-smart-vinyl-player-for-home-assistant
+- Minilos: a device for intentional listening in the digital age https://coconauts.net/blog/2026/04/30/minilos/
+- How I Built an NFC Movie Library for my Kids https://simplyexplained.com/blog/how-i-built-an-nfc-movie-library-for-my-kids/
+- Tiny Tomes https://www.handsonkatie.com/articles/tiny-tomes
+- RFID Record Player https://github.com/fatihak/RFID-Record-Player
+- NFC Mini Record Player - Vinyl Tag Reader https://makerworld.com/pl/models/1980570-esp32-nfc-mini-record-player-vinyl-tag-reader
+- NFC Spotify Player https://github.com/janjanmedinaaa/nfc-spotify-player
 
 Feel free to contribute updates for other available DIY projects.
 
