@@ -22,6 +22,7 @@ jobs:
       matrix:
         file:
           - non-iron-tagreader
+          - non-iron-tagreader-st25r
 
         esphome-version:
           - stable
