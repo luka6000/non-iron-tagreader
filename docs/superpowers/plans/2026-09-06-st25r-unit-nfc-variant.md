@@ -394,8 +394,8 @@ script:
 ```yaml
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "non-iron-tagreader-st25r"
-  friendly_name: "Non-Iron TagReader (ST25R)"
+  name: "tagreader-st25r"
+  friendly_name: "TagReader (ST25R)"
 
 packages:
   # Include all of the core configuration
@@ -430,12 +430,12 @@ dashboard_import:
   import_full_config: false
 
 esp32_ble:
-  name: nonIronNfcRdr
+  name: TagReaderST25
 esp32_improv:
   authorizer: toggle
 ```
 
-`esp32_ble` names are capped at 13 characters — `nonIronNfcRdr` is exactly 13, distinct from the rc522 build's `nonIronTagRdr`.
+`esp32_ble` names are capped at 13 characters — `TagReaderST25` is exactly 13, distinct from the rc522 build's `nonIronTagRdr`.
 
 - [ ] **Step 5: Validate the factory config**
 
@@ -492,8 +492,8 @@ Expected: prints `.gitignore:6:/secrets.yaml	secrets.yaml` (or similar), confirm
 
 ```yaml
 substitutions:
-  name: "non-iron-tagreader-st25r"
-  friendly_name: "Non-Iron TagReader (ST25R)"
+  name: "tagreader-st25r"
+  friendly_name: "TagReader (ST25R)"
 
 packages:
   project: !include non-iron-tagreader-project.yaml

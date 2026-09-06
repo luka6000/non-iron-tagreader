@@ -1,7 +1,7 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "non-iron-tagreader-st25r"
-  friendly_name: "Non-Iron TagReader (ST25R)"
+  name: "tagreader-st25r"
+  friendly_name: "TagReader (ST25R)"
 
 packages:
   # Include all of the core configuration
@@ -40,6 +40,6 @@ dashboard_import:
 #   next_url: https://github.com/luka6000/Non-Iron-TagReader
 
 esp32_ble:
-  name: nonIronNfcRdr
+  name: TagReaderST25
 esp32_improv:
   authorizer: toggle
