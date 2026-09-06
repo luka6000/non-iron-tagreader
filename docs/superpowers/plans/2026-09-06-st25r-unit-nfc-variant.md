@@ -575,21 +575,46 @@ to:
           - non-iron-tagreader-st25r
 ```
 
-- [ ] **Step 2: Add the ST25R variant to the release build**
+- [ ] **Step 2: Add a separate release build job for the ST25R variant**
+
+`combined-name` isn't just a label — in the pinned `esphome/workflows/build.yml`, when set it merges every file in that job's `files:` list into **one** combined `manifest.json` (concatenating their `builds` arrays, keeping only the first file's top-level name/version metadata). That's for building the *same* project across multiple ESP32 chip variants, not for combining two different NFC readers — adding `non-iron-tagreader-st25r.factory.yaml` to the existing job's `files:` would corrupt both manifests' metadata into one asset instead of two independent ones. So this gets its own job instead, verified against `upload-to-gh-release.yml`'s source, which downloads and uploads *every* artifact from the run with no name filter, so multiple `build-firmware-*` jobs feeding one `upload-to-release` just works.
 
 In `.github/workflows/publish-firmware.yml`, change:
 
 ```yaml
-      files: |
-        non-iron-tagreader.factory.yaml
+  upload-to-release:
+    name: Upload to Release
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@0fdd5e311b7e744069166696072a1a9cbc5fbeb6  # 2026.8.1
+    needs:
+      - build-firmware
+    with:
+      version: ${{ (github.event_name == 'release' && github.event.release.tag_name) || (github.event_name == 'workflow_dispatch' && inputs.version) || '' }}
 ```
 
 to:
 
 ```yaml
+  build-firmware-st25r:
+    name: Build ST25R Firmware
+    uses: esphome/workflows/.github/workflows/build.yml@0fdd5e311b7e744069166696072a1a9cbc5fbeb6  # 2026.8.1
+    with:
       files: |
-        non-iron-tagreader.factory.yaml
         non-iron-tagreader-st25r.factory.yaml
+      esphome-version: stable
+      combined-name: non-iron-tagreader-st25r-firmware
+
+      release-summary: ${{ github.event.release.body }}
+      release-url: ${{ github.event.release.html_url }}
+      release-version: ${{ (github.event_name == 'release' && github.event.release.tag_name) || (github.event_name == 'workflow_dispatch' && inputs.version) || '' }}
+
+  upload-to-release:
+    name: Upload to Release
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@0fdd5e311b7e744069166696072a1a9cbc5fbeb6  # 2026.8.1
+    needs:
+      - build-firmware
+      - build-firmware-st25r
+    with:
+      version: ${{ (github.event_name == 'release' && github.event.release.tag_name) || (github.event_name == 'workflow_dispatch' && inputs.version) || '' }}
 ```
 
 - [ ] **Step 3: Validate both workflow files are still well-formed YAML**
@@ -634,9 +659,10 @@ Replace it with:
 - RFID unit (WS1850S) [M5Stack on AliExpress](https://s.click.aliexpress.com/e/_c3JSZivv) — for the standard rc522-based firmware \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
 
-- Unit NFC (ST25R3916) [M5Stack Unit NFC](https://docs.m5stack.com/en/unit/Unit_NFC) — alternative unit, use the ST25R firmware below \
-<img width="200" src="https://static-cdn.m5stack.com/resource/docs/products/unit/Unit_NFC/img-84e00a90-cbf1-4b2f-b56c-b4778dcd4bd0.webp" />
+- Unit NFC (ST25R3916) [M5Stack docs](https://docs.m5stack.com/en/unit/Unit_NFC) — alternative unit, use the ST25R firmware below
 ```
+
+No product image for the Unit NFC is added here — do not fabricate or guess an image URL for it (this session doesn't have a verified working image link for this product). If a real product image URL is wanted later, get it by fetching the linked M5Stack docs page and using an image URL that actually appears there.
 
 - [ ] **Step 2: Add the ST25R firmware files to the Firmware section**
 
