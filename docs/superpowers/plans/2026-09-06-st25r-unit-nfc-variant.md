@@ -378,7 +378,7 @@ script:
         red: 0%
         green: 100%
         blue: 0%
-        flash_length: 250ms
+        flash_length: 200ms
     - delay: 250ms
     - light.turn_on:
         id: led1
@@ -430,10 +430,12 @@ dashboard_import:
   import_full_config: false
 
 esp32_ble:
-  name: nonIronTagRdrST25R
+  name: nonIronNfcRdr
 esp32_improv:
   authorizer: toggle
 ```
+
+`esp32_ble` names are capped at 13 characters — `nonIronNfcRdr` is exactly 13, distinct from the rc522 build's `nonIronTagRdr`.
 
 - [ ] **Step 5: Validate the factory config**
 
