@@ -17,8 +17,10 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 - Atom Lite controller [M5Stack Official Store on AliExpress](https://s.click.aliexpress.com/e/_c4rw1K9V) \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/3_2e4a5d8d-c739-405a-9494-431e2edec8ae_1200x1200.jpg" />
 
-- RFID unit [M5Stack on AliExpress](https://s.click.aliexpress.com/e/_c3JSZivv) \
+- RFID unit (WS1850S) [M5Stack on AliExpress](https://s.click.aliexpress.com/e/_c3JSZivv) — for the standard rc522-based firmware \
 <img width="200" src="https://shop.m5stack.com/cdn/shop/products/4_7fde30d8-7a26-46a8-9d48-d11a90fbfb7c_1200x1200.jpg" />
+
+- Unit NFC (ST25R3916) [M5Stack docs](https://docs.m5stack.com/en/unit/Unit_NFC) — alternative unit, use the ST25R firmware below
 
 - 3D‑printed enclosure: download the case models [here](https://github.com/luka6000/non-iron-tagreader/tree/main/STLs) or order a print through the JLC3DP service [here](https://jlc3dp.com/3d-models/detail/MX14062-case-for-Non-Iron-TagReader-for-Home-Assistant/?from=VRRKTGMREGSG). For best results, I suggest SLA resin with selectable color and surface finish. You can also check Slant3D Portals service [here](https://teleportpod.com/portal/751bada5-ca11-440a-af45-6d9e2cf4d589?item=5013)
 
@@ -35,7 +37,9 @@ Snap‑together hardware and simple self‑updating firmware make it perfect for
 
 # Firmware
 
-- [non-iron-tagreader-atom-lite.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-atom-lite.yaml) simple NFC tag reader with passive BLE proxy
+- [non-iron-tagreader-atom-lite.yaml](https://github.com/luka6000/non-iron-tagreader/blob/main/non-iron-tagreader-atom-lite.yaml) simple NFC tag reader with passive BLE proxy, for the RFID2 (WS1850S) unit
+- [non-iron-tagreader-st25r.factory.yaml](non-iron-tagreader-st25r.factory.yaml) pre-built firmware for the M5Stack Unit NFC (ST25R3916), flashed via ESP Web Tools and paired over Bluetooth like the standard build
+- [non-iron-tagreader-st25r-custom.yaml](non-iron-tagreader-st25r-custom.yaml) same ST25R hardware, for building locally with your own `secrets.yaml` (copy `secrets.yaml.example`) instead of the pre-built Bluetooth-paired firmware — run `esphome run non-iron-tagreader-st25r-custom.yaml`
 
 # Installation
 
@@ -53,6 +57,14 @@ Please visit [github page](https://luka6000.github.io/non-iron-tagreader/#instal
 For more information, check out the Home Assistant documentation for [tags](https://www.home-assistant.io/integrations/tag/).
 
 <img width="1024" alt="4B0793FC-88F4-4ED7-94ED-9044D19C486D_1_102_o" src="https://github.com/user-attachments/assets/4d6b283a-419a-40f8-b3b6-560d2b305715" />
+
+# ST25R (M5Stack Unit NFC) Known Limitations & Workarounds
+
+- **Tag UIDs look different from the RFID2 build.** `st25r_i2c` formats UIDs as dash-separated hex (e.g. `04-1A-A7-67-5F-61-80`), while `rc522_i2c` doesn't. If you're switching a device from the RFID2 unit to the Unit NFC, re-scan your tags in Home Assistant's Tags panel — existing tag automations keyed to the old UID strings won't match.
+- **Polling only, no IRQ.** The Unit NFC's Grove cable only carries GND/5V/SDA/SCL, so there's no IRQ line. This firmware polls for tags every 350ms instead, the same approach the RFID2 build already uses — there's no functional difference.
+- **The ST25R driver is pinned to a commit, not a release.** [JohnMcLear/esphome_st25r](https://github.com/JohnMcLear/esphome_st25r) has no tagged releases yet, so `non-iron-tagreader-core-nfc-st25r.yaml` pins `external_components` to a known-working commit instead of tracking `main`. To pick up upstream fixes, check that repo's commits/CHANGELOG.md and update the `ref:` value.
+- **Automatic Antenna Tuning is disabled on purpose.** AAT needs a varicap network the M5Stack Unit NFC's fixed antenna matching doesn't have, so `aat_enabled: false` avoids unnecessary startup delay. As a side effect of the underlying component's current register-write limitation (writes are masked to `addr & 0x3F`, so the 0x40-0x7F "Space B" registers used by AAT's correlator config aren't reachable anyway), this isn't a loss for this hardware.
+- **No hosted install page for this variant.** Flash it with the ESPHome Dashboard's "Add Device" → import from this repo's `non-iron-tagreader-st25r.factory.yaml`, run `esphome run non-iron-tagreader-st25r-custom.yaml` locally, or download the manifest/firmware from this repo's [Releases](https://github.com/modem7/non-iron-tagreader-st25r/releases) and feed them to [web.esphome.io](https://web.esphome.io).
 
 # NFC tag reader for HA options
 - Adonno's tagreader https://github.com/adonno/tagreader
