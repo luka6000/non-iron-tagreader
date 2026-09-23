@@ -15,7 +15,7 @@ permissions:
 jobs:
   build-firmware:
     name: Build Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@0fdd5e311b7e744069166696072a1a9cbc5fbeb6  # 2026.8.1
+    uses: esphome/workflows/.github/workflows/build.yml@cc3e76de337dc59bc1cba8da58d963cd23b873f1  # 2026.9.0
     with:
       #### Modify below here to match your project ####
       files: |
@@ -30,7 +30,7 @@ jobs:
 
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@0fdd5e311b7e744069166696072a1a9cbc5fbeb6  # 2026.8.1
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@cc3e76de337dc59bc1cba8da58d963cd23b873f1  # 2026.9.0
     needs:
       - build-firmware
     with:
